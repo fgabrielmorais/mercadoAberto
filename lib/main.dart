@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
       ],
     
-      bottom:
+
       ),
       body: Center(
         child: Column(
