@@ -117,7 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Container(
           decoration: BoxDecoration(
-            
             gradient: LinearGradient(
               begin:  Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -125,19 +124,22 @@ class _MyHomePageState extends State<MyHomePage> {
               colors: [ Color(0xfff5d415), Colors.white ],
             )
           ),
+          
           child: Padding(padding: const EdgeInsets.only(
-              left: 20, right: 20, top: 80),
+              left: 20, right: 20, top: 60),
               child: Image.asset(
-                "assets/images/setedosete.png",
+                "assets/promo.jpg",
                 width: 352.67,
-                height: 109.14,
+                height: 139.14,
                 alignment: Alignment.topCenter
           )),
         
     ),  
+
     SizedBox(
       height: 15,
     ),
+
      Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
