@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercadoaberto/components/campo_pesquisa.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -29,6 +33,13 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
+
+
+
+
+
+
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
@@ -50,47 +61,25 @@ class _MyHomePageState extends State<MyHomePage> {
        leading: Builder(builder: (BuildContext context){
        return IconButton(
             icon: const Icon(Icons.menu_outlined, color: Colors.black),
-            tooltip: 'Show Snackbar',
+            tooltip: 'Menu',
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
+                  const SnackBar(content: Text('Menu')));
             },
        );
        },
        ),
        
           actions: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width - 
-            (2 * 32) - (8 * 5),
-            padding: const EdgeInsets.only(top: 9),
-              child: TextField( 
-              decoration: InputDecoration(
-              isDense: true,
-              prefixIcon: const Icon(Icons.search),
-              contentPadding: EdgeInsets.symmetric(vertical: 5.0),
-              filled: true,
-              fillColor: Colors.white,
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1.0),
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1.0),
-              borderRadius: BorderRadius.circular(50.0),
-              ),
-              hintText:
-               'Buscar no Mercado Aberto'
-              ),
-              ),
-          ),
+        MeuCampoPesquisa(),
+       
           const Padding(padding: EdgeInsets.all(5)),
            Container(child: IconButton(
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-            tooltip: 'Oii :)',
+            tooltip: 'Seu carrinho',
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
+                  const SnackBar(content: Text('Seu carrinho')));
             },
           ),
            ),
@@ -111,56 +100,59 @@ class _MyHomePageState extends State<MyHomePage> {
     
       ),
       body:
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        
-        children: [
-          Container(
+                Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin:  Alignment.topCenter,
               end: Alignment.bottomCenter,
-              stops: [-84.0, 0.92],
+              stops: [-15.0, 0.17],
               colors: [ Color(0xfff5d415), Colors.white ],
             )
           ),
+      
+      padding: EdgeInsets.all(8),
+      child:    
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        
+
+
+        children: [
           
+          Container(
+         
           child: Padding(padding: const EdgeInsets.only(
-              left: 20, right: 20, top: 60),
+              left: 5, right: 5, top: 10,),
               child: Image.asset(
                 "assets/promo.jpg",
-                width: 352.67,
-                height: 139.14,
+                width: 252.67,
+                height: 149.14,
                 alignment: Alignment.topCenter
           )),
         
     ),  
-
-    SizedBox(
-      height: 15,
+      SizedBox(
+      height: 8,
     ),
 
-     Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
- Container(
+     Container(
+       padding: EdgeInsets.all(10),
        decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
             gradient: LinearGradient(
               begin:  Alignment.topRight,
               end: Alignment.topLeft,
-              stops: [-10.0, 0.9],
-              colors: [ Colors.pinkAccent, Colors.purple ],
+              stops: [-13.0, 0.9],
+              colors: [ Color(0xff171955), Color(0xffaa0f91)],
             )
           ),
-      height: 30.0,
-      width: 374.0,
+      height: 40.0,
+      width: 356.0,
           child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-             
-              Text("  Assinatura por R\$9,90/mês",   style: TextStyle(fontSize: 16, color: Colors.white,)),
-               Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 19.0,),
+              Text("  Assine o nível 6 por R\$9,90/mês",   style: TextStyle( color: Colors.white,)),
+               Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 17.0,),
              ],
           ),
           
@@ -171,8 +163,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
 
      Container(
-      width: 374.0,
-      height: 30.0,
+        padding: const EdgeInsets.only(left: 7.5, right: 7.5),
+      width: 356.0,
+      height: 40.0,
       
        decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
@@ -186,18 +179,47 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ],
           ),
+
+
+          
+
+          
           child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         
+             crossAxisAlignment: CrossAxisAlignment.center,
+             
              children: [
-              Icon(Icons.car_repair_rounded,  color: Colors.grey, size: 27.0,),
-              Text("Frete grátis em todo o Brasil",   style: TextStyle(fontSize: 16, color: Colors.green,), textAlign: TextAlign.left,)
+           
+         
+            RichText(
+            text: TextSpan(
+            children: [
+              
+             WidgetSpan(
+             child: Icon(Icons.local_shipping_outlined , size: 19, color: Colors.green,),
+              ),
+
+            TextSpan(
+            text: " Frete Grátis ",
+            style: TextStyle(color: Colors.green)
+            ),
+            TextSpan(
+            text: "em milhões de produtos a partir de R\$79",
+            style: TextStyle(color: Colors.black)
+      ),
+    ],
+  ),
+),
+            
+
+              
              ],
           ),
     )
       ],
      ),
-        ],
-      ),
+      
+    ),
     );
   }
 }
