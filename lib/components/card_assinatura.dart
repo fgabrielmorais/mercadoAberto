@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Assinatura extends StatelessWidget {
-  const Assinatura({ Key? key }) : super(key: key);
+  const Assinatura({ Key? key, required this.titulo}) : super(key: key);
 
+final String titulo;
   @override
   Widget build(BuildContext context) {
     return      Container(
@@ -21,7 +22,7 @@ class Assinatura extends StatelessWidget {
           child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-              Text("  Assine o nível 6 por R\$9,90/mês",   style: TextStyle( color: Colors.white,)),
+              Text(titulo,   style: TextStyle( color: Colors.white,)),
                Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 17.0,),
              ],
           ),

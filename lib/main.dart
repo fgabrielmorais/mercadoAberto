@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
             gradient: LinearGradient(
               begin:  Alignment.topCenter,
               end: Alignment.bottomCenter,
-              stops: [-15.0, 0.17],
+              stops: [-15.0, 0.19],
               colors: [ Color(0xfff5d415), Colors.white ],
             )
           ),
@@ -137,7 +137,9 @@ class _MyHomePageState extends State<MyHomePage> {
       height: 8,
     ),
 
-    Assinatura(),
+    Assinatura(
+     titulo: "Assine o nível 6 por R\$ 9,90/mês",
+    ),
      SizedBox(
       height: 8,
     ),
@@ -145,7 +147,11 @@ class _MyHomePageState extends State<MyHomePage> {
      CardFrete(),
         ]
       ),
-    )
+    ),
+
+    
+
+
     );
   }
 }
