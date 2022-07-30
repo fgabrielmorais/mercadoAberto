@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 
-
+final String endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -45,14 +45,8 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      
-      _counter++;
-    });
-  }
+String endereco = "";
 
   @override
   Widget build(BuildContext context) {
@@ -87,16 +81,39 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
            ),
           ],
-      bottom: const PreferredSize(
+      bottom: PreferredSize(
 
 
         preferredSize: Size.fromHeight(50),
-        child: ListTile(leading: 
-        Icon(Icons.pin_drop_outlined, color: Colors.black, size: 19.0,),
-        
-        title: 
-        Text("Enviar para Marcello Queiroz - Rua Jardim Paulista, 56", 
-        style: TextStyle(fontSize: 11.5), textAlign: TextAlign.center)
+        child: GestureDetector(
+          onTap:  (){
+          setState(() {
+            endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
+          
+          });
+          
+          },
+          child: ListTile(leading:
+          
+
+          IconButton(
+            icon: const Icon(
+              Icons.pin_drop_outlined, color: Colors.black, size: 19.0,),
+          onPressed: (){
+          setState(() {
+            endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
+          
+          });
+          
+          },
+          ),
+          
+          title: 
+          Text("Enviar para $endereco",
+
+
+          style: TextStyle(fontSize: 11.5), textAlign: TextAlign.center)
+          ),
         ),
   
       ),

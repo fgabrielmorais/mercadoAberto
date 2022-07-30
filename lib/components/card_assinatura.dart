@@ -25,9 +25,10 @@ final String titulo;
              children: [
                
               Text(titulo,   style: TextStyle( color: Colors.white,)),
-               IconButton(onPressed: () {
-                 
-               }, icon: const Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 13.0 ),
+               IconButton(
+                 tooltip: 'Seu carrinho',
+                 onPressed: () {
+               }, padding: EdgeInsets.only(top: 3.3, bottom: 3.0),icon: const Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 13.0 ),
              )
                ],
           ),
