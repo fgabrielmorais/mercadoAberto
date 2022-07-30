@@ -20,11 +20,16 @@ final String titulo;
       height: 40.0,
       width: 356.0,
           child: Row(
+             
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
+               
               Text(titulo,   style: TextStyle( color: Colors.white,)),
-               Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 17.0,),
-             ],
+               IconButton(onPressed: () {
+                 
+               }, icon: const Icon(Icons.arrow_forward_ios_rounded,  color: Colors.white, size: 13.0 ),
+             )
+               ],
           ),
           
     );

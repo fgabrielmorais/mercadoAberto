@@ -29,7 +29,7 @@ class CardFrete extends StatelessWidget {
 
           
           child: Row(
-         
+             mainAxisAlignment: MainAxisAlignment.center,
              crossAxisAlignment: CrossAxisAlignment.center,
              
              children: [
@@ -45,11 +45,11 @@ class CardFrete extends StatelessWidget {
 
             TextSpan(
             text: " Frete Grátis ",
-            style: TextStyle(color: Colors.green)
+            style: TextStyle(color: Colors.green, fontSize: 12)
             ),
             TextSpan(
             text: "em milhões de produtos a partir de R\$79",
-            style: TextStyle(color: Colors.black)
+            style: TextStyle(color: Colors.black, fontSize: 12)
       ),
     ],
   ),

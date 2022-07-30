@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mercadoaberto/components/cad_frete_gratis.dart';
 import 'package:mercadoaberto/components/campo_pesquisa.dart';
 import 'package:mercadoaberto/components/card_assinatura.dart';
+import 'package:mercadoaberto/components/categoria_botao.dart';
 
 void main() {
   runApp(const MyApp());
@@ -145,10 +146,34 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
     
      CardFrete(),
-        ]
-      ),
+
+       SizedBox(
+      height: 40,
+    ),
+       
+    Container(child: 
+    Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+      BotaoCategoria(icone: Icons.smartphone_outlined, nome: "Recarregar",),
+        BotaoCategoria(icone: Icons.sell, nome: "Ofertas",),
+          BotaoCategoria(icone: Icons.shopping_basket_outlined,nome: "Mercado",),
+              BotaoCategoria(icone: Icons.time_to_leave_outlined,nome: "Veículos",),
+                BotaoCategoria(icone: Icons.add_outlined, nome: "Ver mais",),
+      ],
+    ),
     ),
 
+    
+        ]
+    
+    
+      ),
+
+    
+      
+    ),
+ 
     
 
 
