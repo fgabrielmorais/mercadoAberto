@@ -1,4 +1,7 @@
+import 'dart:js';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mercadoaberto/components/cad_frete_gratis.dart';
 import 'package:mercadoaberto/components/campo_pesquisa.dart';
 import 'package:mercadoaberto/components/card_assinatura.dart';
@@ -8,8 +11,71 @@ void main() {
   runApp(const MyApp());
 }
 
+
+class ResultCep {
+    String? cep;
+    String? logradouro;
+    String? complemento;
+    String? bairro;
+    String? localidade;
+    String? uf;
+    String? ibge;
+    String? gia;
+    String? ddd;
+    String? siafi;
+
+    ResultCep({
+        this.cep,
+        this.logradouro,
+        this.complemento,
+        this.bairro,
+        this.localidade,
+        this.uf,
+        this.ddd,
+        this.siafi,
+        this.ibge,
+        this.gia,
+    });
+
+    factory ResultCep.fromJson(String str) => ResultCep.fromMap(json.decode(str));
+
+    String toJson() => json.encode(toMap());
+
+    factory ResultCep.fromMap(Map<String, dynamic> json) => ResultCep(
+        cep: json["cep"],
+        logradouro: json["logradouro"],
+        complemento: json["complemento"],
+        bairro: json["bairro"],
+        localidade: json["localidade"],
+        uf: json["uf"],
+        ddd: json["ddd"],
+        siafi: json["siafi"],
+        ibge: json["ibge"],
+        gia: json["gia"],
+    );
+
+    Map<String, dynamic> toMap() => {
+        "cep": cep,
+        "logradouro": logradouro,
+        "complemento": complemento,
+        "bairro": bairro,
+        "localidade": localidade,
+        "uf": uf,
+        "ddd": ddd,
+        "siafi": siafi,
+        "ibge": ibge,
+        "gia": gia,
+    };
+}
+
+
+
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +91,7 @@ class MyApp extends StatelessWidget {
 }
 
 
-final String endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
+dynamic endereco = '';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -45,9 +111,20 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
+late TextEditingController   controller = TextEditingController();
+@override
+void initState(){
+  super.initState();
+}
 
-String endereco = "";
+@override
+void dispose(){
+  controller.dispose();
+  super.dispose();
+}
 
+dynamic endereco = '';
+ var maskcep = MaskTextInputFormatter(mask: '#####-###');
   @override
   Widget build(BuildContext context) {
   
@@ -85,14 +162,6 @@ String endereco = "";
 
 
         preferredSize: Size.fromHeight(50),
-        child: GestureDetector(
-          onTap:  (){
-          setState(() {
-            endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
-          
-          });
-          
-          },
           child: ListTile(leading:
           
 
@@ -100,25 +169,82 @@ String endereco = "";
             icon: const Icon(
               Icons.pin_drop_outlined, color: Colors.black, size: 19.0,),
           onPressed: (){
-          setState(() {
-            endereco = "Avenida Spaddoto, 96 - Jardim Sasazaki";
+           showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Digite seu CEP'),
+          content: TextField(
+          controller: controller,
+          inputFormatters: [maskcep],
+            
+          onChanged: (valor) {
+         
+        
+            },
+            
+            
+            decoration: InputDecoration(hintText: "Informe seu CEP"),
+          ),
+          actions: [
+          TextButton(
+            child: Text("Cancelar"),
+            
+            onPressed: (){
+
+controller.clear();
+                    Navigator.of(context).pop();
+      
+
+            },
+          ),
+               TextButton(
+            child: Text("Ok"),
+            
+            onPressed: (){
+
+            
+       setState(() {
+         endereco = controller.text;
+       });
+                    Navigator.of(context).pop();
+      
+            },
+        
+              
+            
+        )
           
-          });
+          ]);
+      });
+ 
+          
+          
+    
           
           },
+        
           ),
           
+          
+                  
+
+
           title: 
-          Text("Enviar para $endereco",
+          Text("Enviar para o CEP: $endereco",
+        //  final response = await API().get("viacep.com.br/ws/01001000/json/");
+        // return ResultCep.fromJson()     
 
-
-          style: TextStyle(fontSize: 11.5), textAlign: TextAlign.center)
+        
+          style: TextStyle(fontSize: 11.5), textAlign: TextAlign.left)
           ),
+         
+
         ),
   
       ),
     
-      ),
+
       body:
                 Container(
           decoration: BoxDecoration(
@@ -195,5 +321,7 @@ String endereco = "";
 
 
     );
+
   }
+
 }
