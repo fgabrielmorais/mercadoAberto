@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercadoaberto/components/Hover.dart';
 
 class BotaoCategoria extends StatefulWidget {
   const BotaoCategoria({ Key? key, required this.icone, required this.nome}) : super(key: key);
@@ -26,14 +27,22 @@ class _BotaoCategoriaState extends State<BotaoCategoria> {
       },
     
   
-        child: Column(
-      children: [ Container(
+
+      child: OnHover(builder: ((isHovered) {
+        final color = isHovered ? Colors.blue : Colors.grey;
+      
+
+        return Column(
+      children: [ 
+       
+  
+          Container(
       padding: EdgeInsets.all(18),
       
       decoration: BoxDecoration(
          boxShadow: [
             BoxShadow(
-              color: Colors.grey,
+              color: color,
               blurRadius: 8,
               offset: Offset(1, 1),
 
@@ -44,9 +53,17 @@ class _BotaoCategoriaState extends State<BotaoCategoria> {
       color: selecionado ? Colors.white : Colors.white, 
       borderRadius: BorderRadius.circular(100)),
 
-    child: Row(children: [Icon(widget.icone, size: 26, color:  selecionado ? Colors.blue : Colors.grey),],)
-    ),
+    child: Row(children: [
+      
+      
+      
+      Icon(widget.icone, size: 26, color: selecionado ? Colors.blue : Colors.grey,),],),
+          ),
+   
 
+
+        
+     
   Container(
         padding: EdgeInsets.all(4),
       
@@ -65,12 +82,19 @@ class _BotaoCategoriaState extends State<BotaoCategoria> {
     ),
     ),
     
+    
+    
+    
+    
+   
 
    
       ],
+        );
 
+        })),
      
-    ),
     );
+  
   }
 }
