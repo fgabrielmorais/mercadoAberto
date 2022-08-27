@@ -178,13 +178,11 @@ controller.clear();
                   
 
 
-          title: 
-          Text("Enviar para o CEP: $endereco",
-        //  final response = await API().get("viacep.com.br/ws/01001000/json/");
-        // return ResultCep.fromJson()     
+         title: 
+            Text("Enviar para o CEP: $endereco",
+          style: TextStyle(fontSize: 11.5), textAlign: TextAlign.left),
+          
 
-        
-          style: TextStyle(fontSize: 11.5), textAlign: TextAlign.left)
           ),
          
 
@@ -194,7 +192,8 @@ controller.clear();
     
 
       body:
-                Container(
+
+          Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin:  Alignment.topCenter,
