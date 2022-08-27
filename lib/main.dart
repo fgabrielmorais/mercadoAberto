@@ -6,67 +6,13 @@ import 'package:mercadoaberto/components/cad_frete_gratis.dart';
 import 'package:mercadoaberto/components/campo_pesquisa.dart';
 import 'package:mercadoaberto/components/card_assinatura.dart';
 import 'package:mercadoaberto/components/categoria_botao.dart';
+import 'package:mercadoaberto/data/dataController.dart';
+import 'package:mercadoaberto/model/cepModel.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-
-class ResultCep {
-    String? cep;
-    String? logradouro;
-    String? complemento;
-    String? bairro;
-    String? localidade;
-    String? uf;
-    String? ibge;
-    String? gia;
-    String? ddd;
-    String? siafi;
-
-    ResultCep({
-        this.cep,
-        this.logradouro,
-        this.complemento,
-        this.bairro,
-        this.localidade,
-        this.uf,
-        this.ddd,
-        this.siafi,
-        this.ibge,
-        this.gia,
-    });
-
-    factory ResultCep.fromJson(String str) => ResultCep.fromMap(json.decode(str));
-
-    String toJson() => json.encode(toMap());
-
-    factory ResultCep.fromMap(Map<String, dynamic> json) => ResultCep(
-        cep: json["cep"],
-        logradouro: json["logradouro"],
-        complemento: json["complemento"],
-        bairro: json["bairro"],
-        localidade: json["localidade"],
-        uf: json["uf"],
-        ddd: json["ddd"],
-        siafi: json["siafi"],
-        ibge: json["ibge"],
-        gia: json["gia"],
-    );
-
-    Map<String, dynamic> toMap() => {
-        "cep": cep,
-        "logradouro": logradouro,
-        "complemento": complemento,
-        "bairro": bairro,
-        "localidade": localidade,
-        "uf": uf,
-        "ddd": ddd,
-        "siafi": siafi,
-        "ibge": ibge,
-        "gia": gia,
-    };
-}
 
 
 
@@ -90,7 +36,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
+CEP? model = CEP();
 dynamic endereco = '';
 
 class MyHomePage extends StatefulWidget {
@@ -201,11 +147,13 @@ controller.clear();
                TextButton(
             child: Text("Ok"),
             
-            onPressed: (){
+            onPressed:   ()  async {
 
-            
+
+        model = await CepController().getCEP(controller.text.toString().replaceAll("-", ""));      
        setState(() {
-         endereco = controller.text;
+         
+         endereco = "${model?.cep}, ${model?.bairro}, ${model?.logradouro}, ${model?.localidade}";
        });
                     Navigator.of(context).pop();
       
@@ -256,6 +204,8 @@ controller.clear();
             )
           ),
       
+
+      
       padding: EdgeInsets.all(8),
       child:    
       Column(
@@ -277,6 +227,7 @@ controller.clear();
           )),
         
     ),  
+
       SizedBox(
       height: 8,
     ),
@@ -311,6 +262,7 @@ controller.clear();
     
         ]
     
+
     
       ),
 
@@ -326,3 +278,5 @@ controller.clear();
   }
 
 }
+
+
